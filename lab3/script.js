@@ -5,8 +5,10 @@ window.onload = function(){
 }
 function check_status(check,send){
 	if(check.checked){
-		console.log(dom.checked)
 		send.disabled = ""
+	}
+	else{
+		send.disabled = "disabled"
 	}
 }
 function GetElement(id){
