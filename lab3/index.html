@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>A Pen by  wuchiawei</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<form class="userlabe" method="post">
+  <div class="fisrt"><span class="title">個人資料 -- 必填</span><br/><span>姓名：</span>
+    <input class="name" type="text"/><br/><span>密碼：</span>
+    <input class="name" type="password"/><br/><span>男生</span>
+    <input class="mlselect" type="radio" value="men"/><span>女生</span>
+    <input class="mlselect" type="radio" value="women"/>
+  </div>
+  <div class="sec"><span class="title">個人資料 -- 興趣</span><br/><span>興趣：</span>
+    <input class="raidofix" type="checkbox"/><span>音樂</span>
+    <input class="raidofix" type="checkbox"/><span>運動</span>
+    <input class="raidofix" type="checkbox"/><span>閱讀</span>
+    <input class="raidofix" type="checkbox"/><span>電影</span><br/><span style="line-height:0px;">專長:</span>
+    <textarea class="input_text" cols="40" row="20"></textarea>
+  </div>
+  <div class="sec"><span class="title">個人資料 -- 地址</span><br/><span>郵遞區號</span>
+    <input class="name" type="text"/><br/><span>縣市</span>
+    <select class="country">
+      <option value="台北">台北</option>
+      <option value="高雄">高雄</option>
+      <option value="台中">台中</option>
+      <option value="新北">新北</option>
+    </select><br/><span>其他地址</span>
+    <input class="name" type="text"/>
+  </div>
+  <div class="btn">
+    <input id="check_btn" type="checkbox"/><span>同意你隨意使用個資..</span><br/>
+    <button class="send" id="send_btn" disabled="disabled">送出</button>
+    <button class="reset">清除</button>
+  </div>
+</form>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

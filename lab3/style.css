@@ -1,0 +1,39 @@
+.fisrt, .sec {
+  height: auto;
+  position: relative;
+  padding: 20px;
+  border: 1px solid #000;
+  box-sizing: border-box;
+}
+
+.sec {
+  margin-top: 20px;
+}
+
+.title {
+  position: absolute;
+  background-color: #fff;
+  font-size: 20px;
+  top: -15px;
+  left: 20px;
+}
+
+.input_text {
+  height: 100px;
+}
+
+.raidofix {
+  border-radius: 30%;
+}
+
+body, html {
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+}
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
