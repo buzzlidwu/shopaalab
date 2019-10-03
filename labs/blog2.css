@@ -1,0 +1,46 @@
+#p1
+{
+    font-size: 20px;
+    line-height: 1.8em;
+}
+#item1 li
+{
+    float: left;
+    margin-left: 40px; 
+}
+#div1
+{
+    border: 1px red solid;
+}
+#div2
+{
+    border-width: 3px;
+    border-color: blue;
+    border-style: dotted;
+  
+    border-left: medium dashed green;
+}
+#div3
+{
+    border: 1px red solid;
+    border-radius: 5px 10px 15px 20px;
+}
+#div4
+{
+    border-width: 3px;
+    border-color: blue;
+    border-style: dotted;
+    border-radius: 5px 10px 15px 20px;
+
+    border-left: medium dashed green;
+}
+div > img 
+{
+    float: right;
+    border-radius: 5px;
+    height: 100px;
+}
+#div5
+{
+    overflow: scroll;
+}
