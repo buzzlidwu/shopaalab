@@ -51,16 +51,15 @@
   background-color: #fff;
 }
 .circle_bar > .circle_item {
-  padding: 6px;
-  flex: auto;
+  padding: 20px;
+  flex: 1;
   /* border: 1px solid #000; */
 }
 .circle_top {
   margin: 0 auto;
   text-align: center;
   line-height: 70px;
-  width: 70px;
-  height: 70px;
+  width: 100%;
   border-radius: 50%;
   background-color: #eee;
 
@@ -103,6 +102,7 @@
   display: flex;
   text-align: center;
   flex-direction: column;
+  height: 200px;
 }
 .img_list > span,div{
   box-sizing: border-box;
@@ -110,14 +110,14 @@
 
 }
 .img_list > .img_box {
-  width: 150px;
+  width: 100%;
   margin: 0 auto;
   height: 150px;
   background-color: #eee;
 }
 .img_list > .loading_bar {
   margin: 0 auto;
-  width: 150px;
+  width: 100%;
 }
 body,html{
   padding: 0;
