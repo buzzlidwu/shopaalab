@@ -1,0 +1,12 @@
+@charset "UTF-8";
+html, body {
+  font-family: "微軟正黑體";
+}
+
+.col {
+  padding: 10px 10px;
+}
+
+.card_title {
+  color: #fff;
+}

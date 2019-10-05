@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>A Pen by  wuchiawei</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-primary"><span class="card_title">個人資料</span></div>
+        <div class="card-body">
+          <label>姓名 : </label>
+          <input class="form-control" type="text"/>
+          <label>密碼 : </label>
+          <input class="form-control" type="text"/>
+          <label>性別 : </label><span>男生</span>
+          <input class="mlselect" type="radio" value="men"/><span>女生</span>
+          <input class="mlselect" type="radio" value="women"/>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-primary"><span class="card_title">個人資料</span></div>
+        <div class="card-body">
+          <label>興趣 :</label>
+          <input class="raidofix" type="checkbox"/><span>音樂</span>
+          <input class="raidofix" type="checkbox"/><span>運動</span>
+          <input class="raidofix" type="checkbox"/><span>閱讀</span>
+          <input class="raidofix" type="checkbox"/><span>電影</span><br/>
+          <label>專長 : </label>
+          <textarea class="input_text" cols="40" row="20"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-primary"><span class="card_title">個人資料 -- 地址</span></div>
+        <div class="card-body">
+          <label>郵遞區號</label>
+          <input class="form-control" type="text"/><br/>
+          <label>縣市</label>
+          <select class="country">
+            <option value="台北">台北</option>
+            <option value="高雄">高雄</option>
+            <option value="台中">台中</option>
+            <option value="新北">新北</option>
+          </select><br/>
+          <label>其他地址</label>
+          <input class="form-control" type="text"/>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" type="button">送出</button>
+      <button class="btn btn-primary" type="button">清除</button>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  
+</body>
+</html>
