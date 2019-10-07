@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- bootstrap 4.3.1 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="./style/style.css" />
+    <script src="methods.js"></script>
+    <script></script>
+    <title>select PAGE</title>
+  </head>
+  <body>
+    <div class="row" style="margin:10px">
+      <div class="col-12">
+        <input id="CheckAll" type="checkbox" />勾選全部
+        <div id="CheckBoxGroup">
+          <input type="checkbox" />項目1 <input type="checkbox" />項目2
+          <input type="checkbox" />項目3 <input type="checkbox" />項目4
+          <input type="checkbox" />項目5 <input type="checkbox" />項目6
+          <input type="checkbox" />項目7 <input type="checkbox" />項目8
+        </div>
+      </div>
+    </div>
+
+    <div id="ImgGroup2" class="row" style="margin:10px; padding-top:100px">
+        <div class="col-12">
+            <select id="sel01">
+                <option value="15">15px</option>
+                <option value="30">30px</option>
+                <option value="50">50px</option>
+            </select>
+        </div>
+
+        <div class="col-4">
+            <img src="Images/1.jpg" style="width:100%" class="img-responsive" />
+        </div>
+        <div class="col-4">
+            <img src="Images/2.jpg" style="width:100%" class="img-responsive" />
+        </div>
+        <div class="col-4">
+            <img src="Images/3.jpg" style="width:100%" class="img-responsive" />
+        </div>
+    </div>
+
+    <div class="row" style="margin:10px">
+        <div class="col-4">
+            <img src="Images/1.jpg" style="width:100%" class="img-responsive-hover" />
+        </div>
+        <div class="col-4">
+            <img src="Images/2.jpg" style="width:100%" class="img-responsive-hover" />
+        </div>
+        <div class="col-4">
+            <img src="Images/3.jpg" style="width:100%" class="img-responsive-hover" />
+        </div>
+    </div>
+    <div class="row" style="margin:10px">
+        <div class="col-4">
+            <img src="Images/4.jpg" style="width:100%" class="img-responsive-hover" />
+        </div>
+        <div class="col-4">
+            <img src="Images/5.jpg" style="width:100%" class="img-responsive-hover" />
+        </div>
+        <div class="col-4">
+            <img src="Images/6.jpg" style="width:100%" class="img-responsive-hover" />
+        </div>
+    </div>
+  </body>
+  <script>
+    $("#CheckAll").click(()=> {
+      let value = $('#CheckAll').prop('checked')
+      console.log(value)
+      let checkgroup = $('#CheckBoxGroup input:checkbox')
+      if(value){
+        checkgroup.prop('checked',true)
+      }else{
+        checkgroup.prop('checked',false)
+      }
+    });
+    $(document).ready(function(){
+      $('.img-responsive-hover').hover(function () {
+          // over
+          $(this).css({'cursor':'pointer','transition':'1s','transform':'scale(1.5)'})
+          
+        }, function () {
+          // out
+          $(this).css({'cursor':'pointer','transition':'3s','transform':'scale(1)'})
+        }
+      );
+    })
+    // cursor: pointer;
+    $(document).ready(()=>{
+      // $('img-responsive-hover img').hover(
+      //   ()=>{
+      //     console.log($('img-responsive-hover:img'))
+      //   },
+      // ()=>{
+      //   $('img-responsive-hover').css('cour','100%')
+      // })
+      $('#sel01').change(
+      (e)=>{
+        console.log(e)
+        // let value = $(this).find('option:selected').val()
+        let value = $('#sel01').val()
+        let str = value + 'px'
+        $('.img-responsive').css('border-radius',str)
+      }
+      )
+    })
+    
+  </script>
+</html>
