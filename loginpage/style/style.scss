@@ -1,0 +1,43 @@
+@import "reset";
+
+*{
+  box-sizing: border-box;
+  // border: 1px solid #000;  
+  position: relative;
+}
+
+.login_View{
+  border: 1px solid red;
+  display: flex;
+  width: 50%;
+}
+.link_font {
+  color: #0645AD;
+  cursor: pointer;
+}
+.card-header {
+  color: #fff;
+}
+.sendbar {
+  margin-top: 20px;
+  width: 100%;
+  .btn_bar{
+    margin-top: 6px;
+    display: flex;
+    .left,.right{
+      flex: 1;
+      .send_btn , .register_btn {
+        width: 100%;
+      }
+    }
+    .right{
+      margin-left: 10px;
+    }
+    .register_btn{
+      width: 100%;
+    }
+  }
+}
+.display_none{
+  display: none;
+}

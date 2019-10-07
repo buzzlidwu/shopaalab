@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- bootstrap 4.3.1 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="./style/style.css" />
+    <script src="methods.js"></script>
+    <script>
+
+      
+    </script>
+    <title>LOGIN PAGE</title>
+  </head>
+  <body>
+    <!-- Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Heading</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body" id="modal_text">
+              Modal body..
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    <!-- Modal end -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card login_card">
+            <h5 class="card-header bg-primary">LOGIN</h5>
+            <div class="card-body">
+              <label for="username">ACCOUNT</label>
+              <div class="input-group flex-nowrap">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="USERNAME"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <label for="username" style="margin-top:10px">PASSWORD</label>
+              <div class="input-group flex-nowrap">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="PASSWORD"
+                  aria-label="userpassword"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <div class="sendbar">
+                <input
+                  type="checkbox"
+                  name="checkuser"
+                  class="login_check"
+                  value="false"
+                />
+                <span>勾選我同意本系統</span
+                ><span class="link_font">使用條款</span>
+                <br />
+                <div class="btn_bar">
+                  <div class="left">
+                    <button type="button" class="btn btn-primary send_btn" onclick='CheckStatus()' data-toggle="modal" data-target="#myModal">
+                      登入
+                    </button>
+                  </div>
+                  <div class="right">
+                    <button type="button" class="btn btn-danger register_btn" onclick="ShowRegeister()">
+                      註冊
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card register_card display_none">
+            <h5 class="card-header bg-info">REGEISTER</h5>
+            <div class="card-body">
+              <label for="username">帳號</label>
+              <div class="input-group flex-nowrap">
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <label for="username" style="margin-top:10px">密碼</label>
+              <div class="input-group flex-nowrap">
+                <input
+                  type="password"
+                  class="form-control"
+                  aria-label="userpassword"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <label for="username">確認密碼</label>
+              <div class="input-group flex-nowrap">
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <label for="username" style="margin-top:10px">EMAIL</label>
+              <div class="input-group flex-nowrap">
+                <input
+                  type="password"
+                  class="form-control"
+                  aria-label="userpassword"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <label for="username">生日</label>
+              <div class="input-group flex-nowrap">
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Username"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <label for="username" style="margin-top:10px">學校/公司</label>
+              <div class="input-group flex-nowrap">
+                <input
+                  type="password"
+                  class="form-control"
+                  aria-label="userpassword"
+                  aria-describedby="addon-wrapping"
+                />
+              </div>
+              <div class="sendbar">
+                <input
+                  type="checkbox"
+                  name="checkuser"
+                  id="checkuser"
+                  value="false"
+                />
+                <span>勾選我同意本系統</span
+                ><span class="link_font">使用條款</span>
+                <br />
+                <div class="btn_bar">
+                  <button type="button" class="btn btn-danger register_btn">
+                    註冊
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
