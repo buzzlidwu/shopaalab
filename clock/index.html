@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./style//style.css" />
+    <title>Document</title>
+  </head>
+  <style>
+    @font-face {
+      font-family: dig;
+      src: url('./font/digital-7 (italic).ttf');
+    }
+  </style>
+  <body>
+    <span id='time_span' style="font-family: dig;font-size: 36px;">
+      test
+    </span>
+    <button onclick="buttonStart()">開始</button>
+    <button onclick="timeStop()">結束</button>
+  </body>
+</html>
+<script>
+  let timer = null;
+  Date.prototype.Format = function(fmt) {
+    var o = {
+      "M+": this.getMonth() + 1, //月份
+      "d+": this.getDate(), //日
+      "h+": this.getHours(), //小时
+      "m+": this.getMinutes(), //分
+      "s+": this.getSeconds(), //秒
+      "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+      S: this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt))
+      fmt = fmt.replace(
+        RegExp.$1,
+        (this.getFullYear() + "").substr(4 - RegExp.$1.length)
+      );
+    for (var k in o)
+      if (new RegExp("(" + k + ")").test(fmt))
+        fmt = fmt.replace(
+          RegExp.$1,
+          RegExp.$1.length == 1
+            ? o[k]
+            : ("00" + o[k]).substr(("" + o[k]).length)
+        );
+    return fmt;
+  };
+  function buttonStart() {
+
+    timer = setInterval(()=>{this.timeRun()},1000)
+  }
+  function timeRun() {
+    // timer = new Date();
+    let date =  new Date().Format('yyyy/MM/dd hh:mm:ss')
+    document.getElementById('time_span').innerText = date
+    console.log('run')
+  }
+  function timeStop(){
+    window.clearInterval(timer)
+  }
+</script>
