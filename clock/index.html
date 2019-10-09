@@ -14,13 +14,28 @@
       font-family: dig;
       src: url('./font/digital-7 (italic).ttf');
     }
+    .time {
+      width: 150px;
+      word-break: break-all;
+      height: 100px;
+      margin: 0 auto;
+    }
+    .btn_bar{
+      width: 150px;
+      display: flex;
+      margin: 0 auto;
+    }
   </style>
   <body>
-    <span id='time_span' style="font-family: dig;font-size: 36px;">
-      test
-    </span>
-    <button onclick="buttonStart()">開始</button>
-    <button onclick="timeStop()">結束</button>
+    <div class="time">
+      <span id='time_span' style="font-family: dig;font-size: 36px;">
+          test
+        </span>
+    </div>
+    <div class="btn_bar">
+      <button class='btn' style="margin-right: 6px" onclick="buttonStart()">開始</button>
+      <button class='btn' onclick="timeStop()">結束</button>
+    </div>
   </body>
 </html>
 <script>

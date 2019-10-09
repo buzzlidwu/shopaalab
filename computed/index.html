@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./style//style.css" />
+    <title>computed</title>
+  </head>
+  <style>
+    @font-face {
+      font-family: dig;
+      src: url("./font/digital-7 (italic).ttf");
+    }
+    .computer {
+      width: 500px;
+      margin: 0 auto;
+    }
+    .tr2 {
+      width: 200px;
+      height: 50px;
+      border: 1px solid #000;
+      padding: 5px 5px;
+      font-size: 28px;
+    }
+
+    .tr1 {
+      width: 50px;
+      height: 50px;
+      border-radius: .5rem;
+      text-align: center;
+      border: 1px solid #000;
+    }
+    .tr1:hover{
+      background-color: #eee;
+    }
+    .tr1:active{
+      color: #fff;
+      background-color: red;
+    }
+  </style>
+  <body>
+    <div class="computer">
+      <div id="nums" class="numberlist">
+        <table class="tab">
+          <tr>
+            <td  class='tr2' id='value_views' style="font-family:dig;"  colspan="4"></td>
+          </tr>
+          <tr class="tr">
+            <td id="result" colspan="4"></td>
+          </tr>
+          <tr>
+            <td id=" " class="tr1" onclick="reset()">AC</td>
+            <td id="-" class="tr1" onclick="view('(')">(</td>
+            <td id="*" class="tr1" onclick="view(')')">)</td>
+            <td id="/" class="tr1" onclick="view('/')">/</td>
+          </tr>
+          <tr>
+            <td id="7" class="tr1" onclick="view('7')">7</td>
+            <td id="8" class="tr1" onclick="view('8')">8</td>
+            <td id="9" class="tr1" onclick="view('9')">9</td>
+            <td id="0" class="tr1" onclick="view('*')">*</td>
+          </tr>
+          <tr>
+            <td id="4" class="tr1" onclick="view('4')">4</td>
+            <td id="5" class="tr1" onclick="view('5')">5</td>
+            <td id="6" class="tr1" onclick="view('6')">6</td>
+            <td id="." class="tr1" onclick="view('-')">-</td>
+          </tr>
+          <tr>
+            <td id="1" class="tr1" onclick="view('1')">1</td>
+            <td id="2" class="tr1" onclick="view('2')">2</td>
+            <td id="3" class="tr1" onclick="view('3')">3</td>
+            <td id="=" class="tr1" onclick="view('+')">+</td>
+          </tr>
+          <tr>
+              <td id="1" class="tr1" onclick="view('0')">0</td>
+              <td id="2" class="tr1" onclick="view('.')">.</td>
+              
+              <td colspan="2" id="=" class="tr1" onclick="cal()">=</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  let value_view = document.getElementById('value_views')
+  function view(number){
+    value_view.innerText += `${number}`
+  }
+  function cal(){
+
+    value_view.innerText = eval(value_view.innerText)
+  }
+  function reset(){
+    value_view.innerText = ''
+  }
+</script>
