@@ -24,7 +24,6 @@
   </body>
 </html>
 <script>
-  let timer = null;
   Date.prototype.Format = function(fmt) {
     var o = {
       "M+": this.getMonth() + 1, //月份
@@ -50,6 +49,10 @@
         );
     return fmt;
   };
+  let timer = new Date().Format('yyyy/MM/dd hh:mm:ss');
+  window.onload = function(){
+    document.getElementById('time_span').innerText = timer
+  }
   function buttonStart() {
 
     timer = setInterval(()=>{this.timeRun()},1000)
