@@ -10,18 +10,25 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <title>title</title>
+  <style>
+      body{
+        padding: 10px 10px;
+      }
+      #ooxx{
+        margin: 0 auto;
+      }
+      .box{
+          width: 100px;
+          text-align: center;
+          height: 100px;
+      }
+  </style>
 </head>
 <body>
-  <table id='ooxx' border='2' width='300px' height='300px'>
+  <table id='ooxx' border='1' width='300px' height='300px'>
   </table>
 </body>
 </html>
-<style>
-  .box{
-      width: 100px;
-      height: 100px;
-  }
-</style>
 <script>
 let flag = true
 let status_array = [[0,0,0],[0,0,0],[0,0,0]]
@@ -59,6 +66,7 @@ function button_click(row,col,item){
 }
 function check_win(array){
 	for(let item of array){
+    // 判斷橫
 		if(item.length < 3) break;
 		let value = item[0]+item[1]+item[2]
 		if(value == 9){
@@ -71,46 +79,25 @@ function check_win(array){
 			alert("X WIN")
 			this.install_start()
 		}
-	}
+  }
+  //判斷直線 與 斜線
 	const check_0 = array[0][0] + array[1][0] + array[2][0]
 	const check_1 = array[0][1] + array[1][1] + array[2][1]
 	const check_2 = array[0][2] + array[1][2] + array[2][2]
-	
 	const check_3 = array[0][0] + array[1][1] + array[2][2]
-	const check_4 = array[0][2] + array[1][1] + array[2][0]
-	if(check_0 + check_1 + check_2 == 31){
+  const check_4 = array[0][2] + array[1][1] + array[2][0]
+
+  if(check_0 + check_1 + check_2 == 31){
 		alert(`平手 清理棋子中....`)
 		return this.install_start()
 	}
-	if(check_0 == 9 || check_0 == 12){
-		let ans = check_0 == 9 ? "O" : "X"
-		console.log(ans ,"win")
-		alert(`${ans} "win"`)
-		return this.install_start()
-	}
-	if(check_1 == 9 || check_1 == 12){
-		let ans = check_1 == 9 ? "O" : "X"
-		console.log(ans ,"win")
-		alert(`${ans} "win"`)
-		return this.install_start()
-	}
-	if(check_2 == 9 || check_2 == 12){
-		let ans = check_2 == 9 ? "O" : "X"
-		console.log(ans ,"win")
-		alert(`${ans} "win"`)
-		return this.install_start()
-	}
-	if(check_3 == 9 || check_3 == 12){
-		let ans = check_3 == 9 ? "O" : "X"
-		console.log(ans ,"win")
-		alert(`${ans} "win"`)
-		return this.install_start()
-	}
-	if(check_4 == 9 || check_4 == 12){
-		let ans = check_4 == 9 ? "O" : "X"
-		console.log(ans ,"win")
-		alert(`${ans} "win"`)
-		return this.install_start()
-	}
+  for(let i = 0 ; i<5 ; i++){
+    let value = eval('check_'+i)
+    if(value == 9 || value == 12){
+      let ans = value == 9 ? "O" : "X"
+      alert(`${ans} "win"`)
+      return this.install_start()
+    }
+  }
 }
 </script>
