@@ -3,10 +3,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./style//style.css" />
     <title>Document</title>
   </head>
   <style>
@@ -14,71 +20,84 @@
       font-family: dig;
       src: url('./font/digital-7 (italic).ttf');
     }
+    h1 {
+      font-family: "微軟正黑體";
+    }
+    body{
+      padding: 10px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
     .time {
-      width: 150px;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
       word-break: break-all;
       height: 100px;
       margin: 0 auto;
     }
     .btn_bar{
-      width: 150px;
       display: flex;
-      margin: 0 auto;
+      justify-content: center;
+      text-align: center;
+      width: 200px;
     }
   </style>
   <body>
+    <h1>倒數計時器</h1>
     <div class="time">
-      <span id='time_span' style="font-family: dig;font-size: 36px;">
-          test
-        </span>
+      <input type="text" class='form-control' id='user_input' >
+      <span id='time_span' style="font-family: dig;font-size: 36px;">0</span>
     </div>
     <div class="btn_bar">
-      <button class='btn' style="margin-right: 6px" onclick="buttonStart()">開始</button>
-      <button class='btn' onclick="timeStop()">結束</button>
+      <button  class="btn btn-outline-primary" id='btn_start' style="margin-right: 6px" >開始</button>
+      <button class='btn btn-outline-secondary' id='btn_stop' style="margin-right: 6px" >暫停</button>
+      <button class="btn btn-outline-danger" id='btn_timereset' ">結束</button>
     </div>
   </body>
 </html>
 <script>
-  Date.prototype.Format = function(fmt) {
-    var o = {
-      "M+": this.getMonth() + 1, //月份
-      "d+": this.getDate(), //日
-      "h+": this.getHours(), //小时
-      "m+": this.getMinutes(), //分
-      "s+": this.getSeconds(), //秒
-      "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-      S: this.getMilliseconds() //毫秒
-    };
-    if (/(y+)/.test(fmt))
-      fmt = fmt.replace(
-        RegExp.$1,
-        (this.getFullYear() + "").substr(4 - RegExp.$1.length)
-      );
-    for (var k in o)
-      if (new RegExp("(" + k + ")").test(fmt))
-        fmt = fmt.replace(
-          RegExp.$1,
-          RegExp.$1.length == 1
-            ? o[k]
-            : ("00" + o[k]).substr(("" + o[k]).length)
-        );
-    return fmt;
-  };
-  let timer = new Date().Format('yyyy/MM/dd hh:mm:ss');
-  window.onload = function(){
-    document.getElementById('time_span').innerText = timer
-  }
-  function buttonStart() {
+// $(document).ready(function(){
+//   $('btn_start').click(function(){
+//     console.log(this)
+//   })
+// })
+//make click function
+$('#btn_start').click(function(){
+  TimeStart()
+})
+$('#btn_stop').click(function(){
+  timeStop()
+})
+$('#btn_timereset').click(function(){
+  timeReset()
+})
+//methods
+let timer = null
+let start_times = 0
+let flag = false
 
-    timer = setInterval(()=>{this.timeRun()},1000)
-  }
-  function timeRun() {
-    // timer = new Date();
-    let date =  new Date().Format('yyyy/MM/dd hh:mm:ss')
-    document.getElementById('time_span').innerText = date
-    console.log('run')
-  }
-  function timeStop(){
-    window.clearInterval(timer)
-  }
+function TimeStart(){
+  start_times = flag ? start_times : $('#user_input').val()
+  flag = true
+  $('#user_input').attr('disabled', true)
+  if(start_times == 0) return
+  timer = setInterval(()=>{
+    $('#time_span').text(start_times--)
+    if($('#time_span').text() == 0) return timeReset()
+  },1000)
+}
+function timeStop(){
+  start_times = $('#time_span').text()
+  clearInterval(timer)
+}
+function timeReset(){
+  flag = false
+  clearInterval(timer)
+  $('#user_input').attr('disabled', false)
+}
+
 </script>
