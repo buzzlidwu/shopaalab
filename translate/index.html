@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <title>Translate</title>
+  </head>
+  <style>
+    * {
+      transition: .5s;
+      font-family: '微軟正黑體';
+    }
+    .container{
+      width: 100%;
+      padding: 20px;
+    }
+    .content{
+      position: relative;
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+      padding: 0px;
+      overflow: hidden;
+      margin: 0 auto;
+      width: 100%;
+      border-radius: 8px;
+      height: 245px;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      flex: 1;
+      display: flex;
+      border-bottom: 1px solid #E0E0E0;
+    }
+    .translate{
+      flex: 4;
+      display: flex;
+    }
+    .left_translate,.right_translate,.left_lang,.right_lang{
+      box-sizing: border-box;
+      display: flex;
+      flex:1;
+    }
+    .left_translate{
+      border-right: 1px solid #E0E0E0;
+    }
+    .left_lang span,.right_lang span{
+      width: 70px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+    textarea{
+      overflow: auto hidden;
+      box-sizing: border-box;
+      direction: ltr;
+      width: 100%;
+      padding: 20px 30px;
+      outline: none;
+      resize: none;
+      border: none;
+    }
+    .on_select{
+      color: #4285f4;
+      border-bottom: 1px solid #4285f4;
+      border-width: 3px;
+    }
+    .arrow{
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      display: flex;
+      width: 100px;
+      transform: translate(-50%);
+    }
+    .left_arrow,.right_arrow{
+      flex: 1;
+      cursor: pointer;
+      text-align: center;
+      font-size: 36px;
+      color: #E0E0E0;
+    }
+    .left_arrow:hover{
+      transform: scale(1.2);
+    }
+    .right_arrow:hover{
+      transform: scale(1.2);
+    }
+    .left_arrow:active{
+      transition: 0s;
+      color: #4285f4;
+    }
+    .right_arrow:active{
+      transition: 0s;
+      color: #4285f4;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="content">
+            <div class="topbar">
+              <div class="left_lang">
+                <span lang='0' class='on_select'>中文</span>
+                <span lang='1'>英文</span>
+                <span lang='2'>韓文</span>
+                <span lang='3'>日文</span>
+                <span lang='4'>西班牙</span>
+              </div>
+              <div class="right_lang">
+                <span lang='0'>中文</span>
+                <span lang='1' class='on_select'>英文</span>
+                <span lang='2'>韓文</span>
+                <span lang='3'>日文</span>
+                <span lang='4'>西班牙</span>
+              </div>
+            </div>
+            <div class="translate">
+              <div class="left_translate">
+                <textarea class='translate_input'rows="1"  spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+              </div>
+              <div class="right_translate">
+                <textarea class='translate_input'rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+              </div>
+            </div>
+            <div class="arrow">
+              <i class="fas fa-arrow-left left_arrow"></i>
+              <i class="fas fa-arrow-right right_arrow"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
+<script>
+let letf_lang = 0;
+let right_lang = 1;
+const lang_array = ['to=zh-Hant','to=en','to=ko','to=ja','to=es']
+
+$('.right_lang span').click(function(){
+  $(this)
+    .addClass("on_select")
+    .siblings()
+    .removeClass("on_select");
+    right_lang = $(this)[0].lang
+  
+})
+$('.left_lang span').click(function(){
+  $(this)
+    .addClass("on_select")
+    .siblings()
+    .removeClass("on_select");
+    letf_lang = $(this)[0].lang
+})
+$('.left_arrow').click(async ()=>{
+  let str = $('.right_translate textarea').val()
+  if(str=='') return
+  let post = await TranslateApi(str,lang_array[letf_lang])
+  $('.left_translate textarea').val(post)
+})
+$('.right_arrow').click(async ()=>{
+  let str = $('.left_translate textarea').val()
+  if(str=='') return
+  let post = await TranslateApi(str,lang_array[right_lang])
+  $('.right_translate textarea').val(post)
+})
+
+function TranslateApi(data,side) {
+  const url = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&${side}`
+  let methods = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Ocp-Apim-Subscription-Key": "8d6444ebb12c447d95a5fea1f84cd40c"
+    },
+    body: JSON.stringify([{"Text":data}])
+  };
+  const GET_API = async () => {
+    const res = await fetch(url, methods)
+    const data = await res.json()
+    return data[0].translations[0].text
+  };
+  return GET_API()
+}
+</script>
