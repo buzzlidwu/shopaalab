@@ -147,8 +147,12 @@
 <script>
 let letf_lang = 0;
 let right_lang = 1;
+const user_last = localStorage.getItem('user_last')
 const lang_array = ['to=zh-Hant','to=en','to=ko','to=ja','to=es']
-
+$(document).ready(()=>{
+  let last = user_last ? user_last : ''
+  $('.left_translate textarea').val(last)
+})
 $('.right_lang span').click(function(){
   $(this)
     .addClass("on_select")
@@ -166,16 +170,20 @@ $('.left_lang span').click(function(){
 $('.left_arrow').click(async ()=>{
   let str = $('.right_translate textarea').val()
   if(str=='') return
+  SaveStorage(str)
   let post = await TranslateApi(str,lang_array[letf_lang])
   $('.left_translate textarea').val(post)
 })
 $('.right_arrow').click(async ()=>{
   let str = $('.left_translate textarea').val()
   if(str=='') return
+  SaveStorage(str)
   let post = await TranslateApi(str,lang_array[right_lang])
   $('.right_translate textarea').val(post)
 })
-
+function SaveStorage(data){
+  localStorage.setItem('user_last',data)
+}
 function TranslateApi(data,side) {
   const url = `https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&${side}`
   let methods = {

@@ -1,0 +1,54 @@
+*{
+  box-sizing: border-box;
+}
+$top_bar_bgc :#252f4a;
+$contant_bgc : #849EBF;
+
+@mixin ABcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+body,html{
+  padding: 0;
+  margin: 0;
+  @include ABcenter();
+}
+
+.robot_box{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  .top_robotname_bar{
+    height: 10vh;
+    position: fixed;
+    width: 100%;
+    background-color: $top_bar_bgc;
+  }
+  .mid_contant{
+    padding-top: 10vh;
+    overflow: scroll;
+    background-color: $contant_bgc;
+    height: 90vh;
+  }
+  .footer_userinput{
+    height: 10vh;
+    display: flex;
+    @include ABcenter();
+    .user_input{
+      padding: 1vh 3vw;
+      height: 100%;
+      border-radius: .5rem;
+      flex: 9;
+    }
+    .send_btn{
+      font-size: 7vw;
+      height: 100%;
+      position: relative;
+      @include ABcenter();
+      flex: 1;
+    }
+  }
+}
