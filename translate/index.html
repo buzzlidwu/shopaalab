@@ -113,18 +113,18 @@
           <div class="content">
             <div class="topbar">
               <div class="left_lang">
-                <span lang='0' class='on_select'>中文</span>
-                <span lang='1'>英文</span>
-                <span lang='2'>韓文</span>
-                <span lang='3'>日文</span>
-                <span lang='4'>西班牙</span>
+                <span class='on_select'>中文</span>
+                <span >英文</span>
+                <span >韓文</span>
+                <span >日文</span>
+                <span >西班牙</span>
               </div>
               <div class="right_lang">
-                <span lang='0'>中文</span>
-                <span lang='1' class='on_select'>英文</span>
-                <span lang='2'>韓文</span>
-                <span lang='3'>日文</span>
-                <span lang='4'>西班牙</span>
+                <span >中文</span>
+                <span  class='on_select'>英文</span>
+                <span >韓文</span>
+                <span >日文</span>
+                <span >西班牙</span>
               </div>
             </div>
             <div class="translate">
@@ -154,15 +154,14 @@ $('.right_lang span').click(function(){
     .addClass("on_select")
     .siblings()
     .removeClass("on_select");
-    right_lang = $(this)[0].lang
-  
+  right_lang = $(this).index()
 })
 $('.left_lang span').click(function(){
   $(this)
     .addClass("on_select")
     .siblings()
     .removeClass("on_select");
-    letf_lang = $(this)[0].lang
+  letf_lang = $(this).index()
 })
 $('.left_arrow').click(async ()=>{
   let str = $('.right_translate textarea').val()
