@@ -92,6 +92,7 @@ body, html {
   font-size: 5vw;
   margin-left: 3vw;
   margin-top: 1vw;
+  word-break: break-all;
 }
 
 .robot_box .mid_contant .myself {
@@ -158,5 +159,149 @@ body, html {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+@media screen and (min-width: 375px) and (min-height: 812px) {
+  body, html {
+    padding: 0;
+    margin: 0;
+    background-color: #666;
+  }
+  .robot_box {
+    overflow: hidden;
+    border-radius: .5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 375px;
+    height: 812px;
+  }
+  .robot_box .top_robotname_bar {
+    height: 81.2px;
+    position: fixed;
+    z-index: 100;
+    width: 375px;
+    background-color: #252f4a;
+  }
+  .robot_box .top_robotname_bar .top_robotname {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #fff;
+    height: 100%;
+    padding: 0 11.25px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 24.36px;
+  }
+  .robot_box .mid_contant {
+    padding-top: 81.2px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow: scroll;
+    background-color: #849EBF;
+    position: relative;
+    height: 730.8px;
+  }
+  .robot_box .mid_contant .robot {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 25px 11px;
+  }
+  .robot_box .mid_contant .robot .robot_icon {
+    font-size: 30px;
+  }
+  .robot_box .mid_contant .robot .robot_contant {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 10px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: left;
+    background-color: #fff;
+    border-radius: .5rem;
+    font-size: 18.75px;
+    margin-left: 11.25px;
+    margin-top: 3.75px;
+  }
+  .robot_box .mid_contant .myself {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+  .robot_box .mid_contant .user {
+    margin-left: 0;
+    margin-top: 3.75px;
+    margin-right: 11.25px;
+  }
+  .robot_box .footer_userinput {
+    height: 81.2px;
+    background-color: #fff;
+    padding: 8.12px 3.75px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+  }
+  .robot_box .footer_userinput .user_input {
+    height: 100%;
+    padding: 0 3.75px;
+    -webkit-box-flex: 9;
+        -ms-flex: 9;
+            flex: 9;
+  }
+  .robot_box .footer_userinput .user_input .user_textarea {
+    border-radius: 1rem;
+    font-size: 24.36px;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    resize: none;
+    border: none;
+    background-color: #f6f6f6;
+  }
+  .robot_box .footer_userinput .send_btn {
+    font-size: 26.25px;
+    height: 100%;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
 }
 /*# sourceMappingURL=index.css.map */

@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 
 <head>
-    <title>testStorage.html</title>
+    <title>chiaweiwu</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,13 +27,15 @@
 
         function gitddNew() {
             //取得資料
-            var item = [
+            let item = [
                 $('#field_Name').val(),
                 $('#field_Birthday').val(),
                 $('#field_TEL').val(),
                 $('#field_Email').val(),
                 $('#field_Address').val()
             ];
+            console.log(JSON.stringify(item));
+            
 
             dat.push(item);
             //儲存
@@ -52,14 +54,11 @@
             $('#ModalAddNew').modal();
         }
 
-        //載入資料
         function LoadData() {
             if (localStorage.getItem('AddressBook') != null) {
                 var str = localStorage.getItem('AddressBook');
-                //取回資料
                 dat = JSON.parse(str);
             }
-            //refresh data table
             refreshData();
         }
 
@@ -79,8 +78,10 @@
 
         //儲存資料
         function SaveData() {
-            var str = JSON.stringify(dat);
+            let str = JSON.stringify(dat);
+            
             localStorage.setItem('AddressBook', str);
+            
         }
 
         function ButtonDelete() {
@@ -137,7 +138,7 @@
             //event hook
             $('#ButtonSearch').click(ButtonSearch);
             $('#ButtonShowAddNewWindow').click(ButtonShowAddNewWindow);
-            $('#ButtonAddNew').click(ButtonAddNew);
+            $('#ButtonAddNew').click(gitddNew);
             $('#ButtonDelete').click(ButtonDelete);
             $('#ButtonUpdate').click(ButtonUpdate);
             $('#ButtonShowImport').click(ButtonShowImport);

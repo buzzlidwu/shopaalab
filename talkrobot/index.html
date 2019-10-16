@@ -23,7 +23,7 @@
     <div class="robot_box">
       <div class="top_robotname_bar">
         <div class="top_robotname">
-          <span>生活小幫手</span>
+          <span>costco Q&A</span>
         </div>
       </div>
       <div class="mid_contant">
@@ -31,7 +31,8 @@
         <div class="robot">
           <i class="fas fa-robot robot_icon"></i>
           <div class="robot_contant">
-            請輸入油價,天氣預報,抽籤
+            請輸入任何關於costco的相關問題！
+            讓我來為您解答～～
           </div>
         </div>
       </div>
@@ -54,26 +55,41 @@
 </html>
 <script>
   const methods_array = ['抽籤']
-  let random_select = false
-  $(document).ready(() => {
-    fetch()
-  });
+  async function GetAns(msg){
+    const url = 'https://qandatest1016.azurewebsites.net/qnamaker/knowledgebases/2e00a98c-846b-4ec6-87cc-772932828024/generateAnswer'
+    const methods = {
+      method: 'POST',
+      headers:{
+        'Authorization' : 'EndpointKey 186162fd-f759-4337-b708-7a090ed72540',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({"question": msg })
+    }
+    const POST = await fetch(url,methods)
+    const data = await POST.json()
+    const ans = data.answers[0].answer
+    robotMessage(ans)
+    return POST.json()
+  }
+  // let random_select = false
   $('.send_btn i').click(()=>{
     InputScan()
   })
   $('.user_textarea').keypress(function(e){
     if(e.keyCode != 13) return
-    InputScan()
+    const str = $('.user_textarea').val()
+    InputScan(str)
+    e.preventDefault();
   })
 
-  function InputScan(){
-    const str = $('.user_textarea').val()
+  function InputScan(str){
     userMessage(str)
-    if(random_select){
-      return randomSelect(str)
-    }
-    let index =  methods_array.indexOf(str)
-    index >= 0 ? checkUserMethods(index) : userField(str)
+    GetAns(str)
+    // if(random_select){
+    //   return randomSelect(str)
+    // }
+    // let index =  methods_array.indexOf(str)
+    // index >= 0 ? checkUserMethods(index) : userField(str)
   }
   function robotMessage(str){
     const template = `
@@ -97,37 +113,37 @@
       .scrollTop($('.mid_contant')[0].scrollHeight)
   }
 
-  function checkUserMethods(index){
-    let message = ''
-    switch(index){
-      case 0:
-        random_select = true
-        message = '請輸入無法抉擇之項目由機器人幫你選擇!輸入範例:滷肉飯,義大利麵,廣東粥'
-        robotMessage(message)
-        break;
-    }
-  }
+  // function checkUserMethods(index){
+  //   let message = ''
+  //   switch(index){
+  //     case 0:
+  //       random_select = true
+  //       message = '請輸入無法抉擇之項目由機器人幫你選擇!輸入範例:滷肉飯,義大利麵,廣東粥'
+  //       robotMessage(message)
+  //       break;
+  //   }
+  // }
   
-  function randomSelect(str){
+  // function randomSelect(str){
     
-    const itemlist  = str.indexOf(',') != -1 ? str.split(',') : str.split('，')
-    console.log(itemlist);
+  //   const itemlist  = str.indexOf(',') != -1 ? str.split(',') : str.split('，')
+  //   console.log(itemlist);
     
-    let message = ''
-    const item_len = itemlist.length 
-    if(item_len <=1){
-      message = '請檢查輸入項目是否只有一項或輸入格式不正確（每項必須以逗號分隔）'
-      return robotMessage(message)
-    }
-    let random_index = Math.floor(Math.random()*(item_len))
-    message = `我已經幫你選擇好了!就決定是${itemlist[random_index]}`
-    robotMessage(message)
-    random_select = false
-    return robotMessage('請輸入油價,天氣預報,抽籤')
-  }
+  //   let message = ''
+  //   const item_len = itemlist.length 
+  //   if(item_len <=1){
+  //     message = '請檢查輸入項目是否只有一項或輸入格式不正確（每項必須以逗號分隔）'
+  //     return robotMessage(message)
+  //   }
+  //   let random_index = Math.floor(Math.random()*(item_len))
+  //   message = `我已經幫你選擇好了!就決定是${itemlist[random_index]}`
+  //   robotMessage(message)
+  //   random_select = false
+  //   return robotMessage('請輸入油價,天氣預報,抽籤')
+  // }
 
-  function userField(str){
-    let field = `你輸入的"${str}"不再功能列上請檢察正確性`
-    return robotMessage(field)
-  }
+  // function userField(str){
+  //   let field = `你輸入的"${str}"不再功能列上請檢察正確性`
+  //   return robotMessage(field)
+  // }
 </script>
