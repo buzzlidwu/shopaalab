@@ -1,34 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <link rel="stylesheet" href="./style/index.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-  <title>title</title>
-</head>
-<body>
-  <div class="robot_box">
-    <div class="top_robotname_bar">
-
-    </div>
-    <div class="mid_contant">
-
-    </div>
-    <div class="footer_userinput">
-      <div class="user_input">
-        123 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="./style/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
+    <title>title</title>
+  </head>
+  <body>
+    <div class="robot_box">
+      <div class="top_robotname_bar">
+        <div class="top_robotname">
+          <span>生活小幫手</span>
+        </div>
       </div>
-      <div class="send_btn">
-        <i class="fas fa-location-arrow send_icon"></i>
+      <div class="mid_contant">
+        <!-- <div class="left_robot"></div> -->
+        <div class="robot">
+          <i class="fas fa-robot robot_icon"></i>
+          <div class="robot_contant">
+            請輸入油價,天氣預報,抽籤
+          </div>
+        </div>
+      </div>
+      <div class="footer_userinput">
+        <div class="user_input">
+          <textarea
+            class="user_textarea"
+            name=""
+            id=""
+            rows="1"
+            cols="1"
+          ></textarea>
+        </div>
+        <div class="send_btn">
+          <i class="fas fa-location-arrow send_icon"></i>
+        </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
+<script>
+  const methods_array = ['抽籤']
+  let random_select = false
+  $(document).ready(() => {
+    fetch()
+  });
+  $('.send_btn i').click(()=>{
+    InputScan()
+  })
+  $('.user_textarea').keypress(function(e){
+    if(e.keyCode != 13) return
+    InputScan()
+  })
+
+  function InputScan(){
+    const str = $('.user_textarea').val()
+    userMessage(str)
+    if(random_select){
+      return randomSelect(str)
+    }
+    let index =  methods_array.indexOf(str)
+    index >= 0 ? checkUserMethods(index) : userField(str)
+  }
+  function robotMessage(str){
+    const template = `
+    <div class="robot">
+      <i class="fas fa-robot robot_icon"></i>
+      <div class="robot_contant">${str}</div>
+    </div>`
+    $('.mid_contant')
+      .append(template)
+      .scrollTop($('.mid_contant')[0].scrollHeight)
+  }
+  function userMessage(str){
+    $('.user_textarea').val('')
+    const template = `
+        <div class="robot myself">
+          <div class="robot_contant user">${str}</div>
+          <i class="fas fa-user robot_icon"></i>
+        </div>`
+    $('.mid_contant')
+      .append(template)
+      .scrollTop($('.mid_contant')[0].scrollHeight)
+  }
+
+  function checkUserMethods(index){
+    let message = ''
+    switch(index){
+      case 0:
+        random_select = true
+        message = '請輸入無法抉擇之項目由機器人幫你選擇!輸入範例:滷肉飯,義大利麵,廣東粥'
+        robotMessage(message)
+        break;
+    }
+  }
+  
+  function randomSelect(str){
+    
+    const itemlist  = str.indexOf(',') != -1 ? str.split(',') : str.split('，')
+    console.log(itemlist);
+    
+    let message = ''
+    const item_len = itemlist.length 
+    if(item_len <=1){
+      message = '請檢查輸入項目是否只有一項或輸入格式不正確（每項必須以逗號分隔）'
+      return robotMessage(message)
+    }
+    let random_index = Math.floor(Math.random()*(item_len))
+    message = `我已經幫你選擇好了!就決定是${itemlist[random_index]}`
+    robotMessage(message)
+    random_select = false
+    return robotMessage('請輸入油價,天氣預報,抽籤')
+  }
+
+  function userField(str){
+    let field = `你輸入的"${str}"不再功能列上請檢察正確性`
+    return robotMessage(field)
+  }
+</script>
