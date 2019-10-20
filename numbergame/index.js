@@ -2,45 +2,30 @@ let ans_arr = []
 let user_input = []
 let ans_label = $('#guessResults')
 let user_input_label =$('#userGuess')
-// let random_list = [...Array(10).keys()]
-
 $(()=>{
-
-  // input = 3568
-  // ans = createSet(1249)
-  // let toArr = new Set(input.toString().split(''))
-  // let intersectionSet = new Set([...ans].filter(x => toArr.has(x.toString())));
-
-  // checkAns([...ans],[...toArr],[...intersectionSet])
+  //defalut world
+  btnColor('#restart',true)
+  btnColor('#cheat',true)
+  btnColor('#guess',true)
 })
 $('#start').click(function(){
   //check btn status
   if($(this).attr('disabled')) return
   //close start btn and open restart & cheat btn
-  $(this)
-    .attr('disabled',true)
-    .css('backgroundColor','#adadad')
-  $('#restart')
-    .attr('disabled',false)
-    .css('backgroundColor','#ffffff')
-  $('#cheat')
-    .attr('disabled',false)
-    .css('backgroundColor','#ffffff')
+  btnColor(this,true)
+  btnColor('#restart',false)
+  btnColor('#cheat',false)
+  btnColor('#guess',false)
   gameStrat()
 })
 $('#restart').click(function(){
   //check btn status
   if($(this).attr('disabled')) return
   //close restart & cheat  btn and open start btn
-  $(this)
-    .attr('disabled',true)
-    .css('backgroundColor','#adadad')
-  $('#start')
-    .attr('disabled',false)
-    .css('backgroundColor','#ffffff')
-  $('#cheat')
-    .attr('disabled',true)
-    .css('backgroundColor','#adadad')
+  btnColor(this,true)
+  btnColor('#start',false)
+  btnColor('#cheat',true)
+  btnColor('#guess',true)
 })
 $('#cheat').click(function(){
   //check btn status
@@ -48,15 +33,31 @@ $('#cheat').click(function(){
   let [a,b,c,d] = ans_arr
   alert(`${a}${b}${c}${d}`)
 })
-$('#guess').click(()=>{
+$('#guess').click(function(){
+  //check btn status
+  if($(this).attr('disabled')) return
+  //check user input has str
   if(isNaN(user_input_label.val())) return alert('輸入的數字中包含文字!請重新輸入')
+  //group input to Set
   let user_input = new Set($('#userGuess').val().toString().split(''))
+  //check group size
   if(user_input.size != 4) return alert('請輸入四位不同數字!')
   let intersectionSet = new Set(ans_arr.filter(x => user_input.has(x.toString())));
   let ans = checkAns(ans_arr,[...user_input],[...intersectionSet])
   labelAdd(ans)
   user_input_label.val('')
 })
+function btnColor(ele,bool){
+  if(bool){
+    $(ele)
+      .attr('disabled',true)
+      .css('backgroundColor','#adadad')
+  }else{
+    $(ele)
+      .attr('disabled',false)
+      .css('backgroundColor','#ffffff')
+  }
+}
 function labelAdd(ans){
   let [a,b] = ans
   let template = ''
@@ -66,17 +67,14 @@ function labelAdd(ans){
       <span class="label label-success">4A0B</span>
     </li>
     `
+
     setTimeout(()=>{
       alert('恭喜您已成功解出答案! 遊戲準備重製!')
-      $('#restart')
-        .attr('disabled',true)
-        .css('backgroundColor','#adadad')
-      $('#start')
-        .attr('disabled',false)
-        .css('backgroundColor','#ffffff')
-      $('#cheat')
-        .attr('disabled',true)
-        .css('backgroundColor','#adadad')
+      btnColor('#start',false)
+      btnColor('#restart',true)
+      btnColor('#cheat',true)
+      btnColor('#guess',true)
+      ans_label.html('')
     },1000)
   }else{
     template = `
