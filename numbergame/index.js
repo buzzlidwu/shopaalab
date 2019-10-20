@@ -4,28 +4,20 @@ let ans_label = $('#guessResults')
 let user_input_label =$('#userGuess')
 $(()=>{
   //defalut world
-  btnColor('#restart',true)
-  btnColor('#cheat',true)
-  btnColor('#guess',true)
+  btnStatus(false,true)
 })
 $('#start').click(function(){
   //check btn status
   if($(this).attr('disabled')) return
   //close start btn and open restart & cheat btn
-  btnColor(this,true)
-  btnColor('#restart',false)
-  btnColor('#cheat',false)
-  btnColor('#guess',false)
+  btnStatus(true,false)
   gameStrat()
 })
 $('#restart').click(function(){
   //check btn status
   if($(this).attr('disabled')) return
   //close restart & cheat  btn and open start btn
-  btnColor(this,true)
-  btnColor('#start',false)
-  btnColor('#cheat',true)
-  btnColor('#guess',true)
+  btnStatus(false,true)
 })
 $('#cheat').click(function(){
   //check btn status
@@ -47,16 +39,20 @@ $('#guess').click(function(){
   labelAdd(ans)
   user_input_label.val('')
 })
-function btnColor(ele,bool){
-  if(bool){
-    $(ele)
-      .attr('disabled',true)
-      .css('backgroundColor','#adadad')
-  }else{
-    $(ele)
-      .attr('disabled',false)
-      .css('backgroundColor','#ffffff')
-  }
+function btnStatus(start,reset){
+  let [c1,c2] = start ?  ['#adadad','#ffffff'] : ['#ffffff','#adadad']
+  $('#start')
+    .attr('disabled',start)
+    .css('backgroundColor',c1)
+  $('#restart')
+    .attr('disabled',reset)
+    .css('backgroundColor',c2)
+  $('#cheat')
+    .attr('disabled',reset)
+    .css('backgroundColor',c2)
+  $('#guess')
+    .attr('disabled',reset)
+    .css('backgroundColor',c2)
 }
 function labelAdd(ans){
   let [a,b] = ans
