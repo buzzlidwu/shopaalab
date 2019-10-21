@@ -33,28 +33,28 @@
     }, 500);
   });
   let ans = Math.floor(Math.random() * 12) + 1;
-  const newOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13];
+  const newOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
   let Suffle_times = 3;
   function defualtWorld() {
-    for (let i = 0 ; i < 13 ; i++ ) {
+    for (let i = 0; i < 13; i++) {
       let cards = `
     <div class="card" data-order=${i}>
         <div class="face back"></div>
         <div class="face front">${newOrder[i]}</div>
     </div>
-    `
+    `;
       $(".cards").append(cards);
     }
   }
-  function bindHover(){
-    $('.card').hover(
-      function(){
-        $(this).css('top','33%')
+  function bindHover() {
+    $(".card").hover(
+      function() {
+        $(this).css("top", "33%");
       },
-      function(){
-        $(this).css('top','35%')
+      function() {
+        $(this).css("top", "35%");
       }
-    )
+    );
   }
   function gameStart() {
     // show card & close
@@ -70,11 +70,13 @@
     setTimeout(() => {
       status.html(`洗牌完成 請選擇大於  ${ans}  的牌`);
       //bind hover
-      bindHover()
+      bindHover();
       //bind click
       $(".card").click(function() {
-        $(this).addClass('open')
-        let user_select = $(this).children('.front').text()
+        $(this).addClass("open");
+        let user_select = $(this)
+          .children(".front")
+          .text();
         if (user_select > ans) {
           status.text(`此戰局為獲勝！ 即將重新開始遊戲`);
         } else if (user_select == ans) {
@@ -82,16 +84,16 @@
         } else {
           status.text(`此戰局為落敗！ 即將重新開始遊戲`);
         }
-        setTimeout('reStart()',1500)
+        setTimeout("reStart()", 1500);
       });
     }, 3000);
   }
-  
-  function reStart(){
-    $('.card')
+
+  function reStart() {
+    $(".card")
       .unbind("click")
-      .unbind('mouseenter')
-      .unbind('mouseleave')
+      .unbind("mouseenter")
+      .unbind("mouseleave");
     ans = Math.floor(Math.random() * 12) + 1;
     status.text("遊戲開始 開始整理牌面中...");
     setTimeout(() => {
