@@ -3,6 +3,7 @@
 *{
   box-sizing: border-box;
   // border: 1px solid #000;  
+  font-family: '微軟正黑體';
   position: relative;
 }
 .container {
@@ -19,6 +20,7 @@
   width: 100%;
   left: 0;
   top: 0;
+  z-index: 100;
   // margin: 0 auto;
 }
 .topbar_item{
