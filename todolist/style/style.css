@@ -1,0 +1,48 @@
+* {
+  border: 1px solid #000;
+}
+
+html, body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.headbar {
+  height: 10vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.todolist_table {
+  border: 1px solid #000;
+  width: 100%;
+  height: 90vh;
+}
+
+.todolist_table thead > tr > th {
+  height: 10vh;
+}
+
+.todolist_table tbody > tr > th {
+  height: clac(11.42857vh);
+}
+/*# sourceMappingURL=style.css.map */

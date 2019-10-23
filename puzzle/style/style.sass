@@ -1,0 +1,39 @@
+@mixin size($w,$h:$w)
+  width: $w 
+  height: $h
+@mixin flexCenter
+  display: flex
+  text-align: center
+  justify-content: center
+  align-items: center
+$cardWidth: 5vw
+@mixin setPoa($l,$t)
+  position: absolute
+  left : calc(#{$l}*100px)
+  top : calc(#{$t}*100px)
+  // left: $i*100
+  // top: $l
+@mixin setLeftPos($l,$w:$cardWidth)
+  left: calc(#{$l} - #{$w/2})
+html,body
+  // background-color: #102438
+  // color: white
+  +flexCenter
+.table
+  +size(300px)
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  position: relative
+  .box
+    border: 1px solid #000
+    float: left;
+    transition: transform 1s,left 1s,top 1s;
+    +size(100px)
+    +flexCenter
+    @for $i from 0 through 8
+  
+      &[data-order="#{$i}"]
+        +setPoa($i%3,floor($i/3))
+// [L,T]
+// [0,0]

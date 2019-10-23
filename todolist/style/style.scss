@@ -1,0 +1,34 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+*{
+  border: 1px solid #000;
+}
+html,body{
+  @include flexCenter();
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+}
+.headbar {
+  height: 10vh;
+  width: 100%;
+  @include flexCenter();
+}
+.todolist_table{
+  border: 1px solid #000;
+  width: 100%;
+  // height: 100%;
+  height: 90vh;
+  & thead > tr > th{
+    height: 10vh;
+  }
+  & tbody > tr > th {
+    height: clac((100vh - 20vh)/7);
+    // width: 100px;
+  }
+}
