@@ -9,6 +9,9 @@
 $cardWidth: 5vw
 @mixin setPoa($l,$t)
   position: absolute
+  // background-image: url('../style/300.jpg')
+  // background-position: 0 0
+  background-size: cover;
   left : calc(#{$l}*100px)
   top : calc(#{$t}*100px)
   // left: $i*100
@@ -19,6 +22,7 @@ html,body
   // background-color: #102438
   // color: white
   +flexCenter
+  flex-direction: column
 .table
   +size(300px)
   box-sizing: border-box
@@ -35,5 +39,10 @@ html,body
   
       &[data-order="#{$i}"]
         +setPoa($i%3,floor($i/3))
+.btn_bar
+  width: 100%
+  display: flex
+  .start,.goback
+    flex: 1
 // [L,T]
 // [0,0]
