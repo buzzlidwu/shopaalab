@@ -22,8 +22,10 @@ $(document).ready(() => {
 $('#start_btn').click(function(){
   if(start_status) return
   let user_input = $('#step_size').val()
+  console.log(parseFloat(user_input));
   
-  step = parseFloat(user_input) == NaN ? 20 : parseFloat(user_input)
+  step = parseFloat(user_input).toString() == 'NaN' ? 20 : parseFloat(user_input)
+  console.log(step);
   
   createTopic(step)
   $(this).attr('disabled',true)
@@ -54,10 +56,11 @@ $('#goback_btn').click(function(){
 })
 
 function createTopic(step) {
+  
   if(step > 10000000) step = 10000000
   let step_ms = $('#step_speed').val()
   
-  step_ms = parseFloat(step_ms) == NaN ? 50 : parseFloat(step_ms)
+  step_ms = parseFloat(step_ms).toString() == 'NaN' ? 50 : parseFloat(step_ms)
 
   let ans = [...Array(step)];
   let index = 0;
