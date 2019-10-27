@@ -23,18 +23,20 @@
       <div class="card-body">
         <div class="input-group input-group-sm mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-sm">步長設置</span>
+            <span class="input-group-text">步長設置</span>
           </div>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+          <input type="value" id="step_size" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
-        <button type="button" class="btn btn-primary">開始</button>
-        <button type="button" class="btn btn-danger">解答</button>
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" >洗牌速度(ms)</span>
+          </div>
+          <input id="step_speed" type="value" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <button type="button" class="btn btn-primary" id='start_btn'>開始</button>
+        <button type="button" class="btn btn-danger" id='goback_btn'>解答</button>
       </div>
     </div>
-  <div class="btn_bar">
-    <div class="start">start</div>
-    <div class="goback">goback</div>
-  </div>
 </body>
 </html>
 

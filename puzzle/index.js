@@ -1,7 +1,6 @@
 let Suffle_times = 0;
-let step = 10;
-// let hidden = 0
-
+let step = 20;
+let start_status = false
 let index_temp = 0;
 const puzzle_array = [...Array(9).keys()];
 let ansArr = [];
@@ -19,29 +18,47 @@ const run_rule = {
 
 $(document).ready(() => {
   makerHtml();
-  setTimeout(() => {
-    createTopic(step);
-    // console.log(ansArr);
-    
-  }, 500);
 });
-$('.btn').click(()=>{
-  let i = ansArr.length
+$('#start_btn').click(function(){
+  if(start_status) return
+  let user_input = $('#step_size').val()
   
+  step = parseFloat(user_input) == NaN ? 20 : parseFloat(user_input)
+  
+  createTopic(step)
+  $(this).attr('disabled',true)
+  $('#goback_btn').attr('disabled',false)
+})
+$('#goback_btn').click(function(){
+  let i = ansArr.length
   const change = ()=>{
-    
     let move = index_temp + -[ansArr[i]];
     [ puzzle_array[index_temp] , puzzle_array[move] ] = [ puzzle_array[move] , puzzle_array[index_temp] ]
     index_temp = move
     randomItem(puzzle_array)
     i--
-    if(i>0){
+    if(i>=0){
       setTimeout(()=>change(i),100)
+    }
+    else{
+      Suffle_times = 0;
+      step = 20;
+      index_temp = 0;
+      start_status = false
+      ansArr = []
     }
   }
   change()
+  $(this).attr('disabled',true)
+  $('#start_btn').attr('disabled',false)
 })
+
 function createTopic(step) {
+  if(step > 10000000) step = 10000000
+  let step_ms = $('#step_speed').val()
+  
+  step_ms = parseFloat(step_ms) == NaN ? 50 : parseFloat(step_ms)
+
   let ans = [...Array(step)];
   let index = 0;
   for (let i in ans) {
@@ -51,9 +68,9 @@ function createTopic(step) {
     ans[i] = rule[randomAns];
     index += rule[randomAns];
   }
+  
   ansArr = ans;
-
-  Suffle();
+  Suffle(step_ms);
   $(".box").click(function() {
     let data = $(this).data("order");
     checkMove(data, puzzle_array);
@@ -70,7 +87,7 @@ function makerHtml() {
   }
 }
 
-function Suffle() {
+function Suffle(ms) {
   let change_index = index_temp + ansArr[Suffle_times];
   [puzzle_array[index_temp], puzzle_array[change_index]] = [
     puzzle_array[change_index],
@@ -79,10 +96,11 @@ function Suffle() {
   index_temp = change_index;
   Suffle_times++;
   randomItem(puzzle_array);
+  
   if (Suffle_times < step) {
     setTimeout(() => {
-      Suffle();
-    }, 50);
+      Suffle(ms);
+    }, ms);
   }
 }
 function checkMove(ans) {
@@ -103,6 +121,7 @@ function randomItem(array) {
 
     if (array[box] != 0) {
       boxs[box].style.backgroundImage = `url("./style/p${array[box] + 1}.jpg")`;
+      
     } else {
       boxs[box].style.backgroundImage = ``;
     }
