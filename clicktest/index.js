@@ -33,7 +33,6 @@ function logIt(event, e) {
   
 }
 function avg(){
-  console.log('start');
   
   let j = 0
   for(let i in avg_ms){
