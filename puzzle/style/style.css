@@ -9,6 +9,10 @@ html, body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .table {
@@ -44,55 +48,77 @@ html, body {
 
 .table .box[data-order="0"] {
   position: absolute;
+  background-size: cover;
   left: calc(0*100px);
   top: calc(0*100px);
 }
 
 .table .box[data-order="1"] {
   position: absolute;
+  background-size: cover;
   left: calc(1*100px);
   top: calc(0*100px);
 }
 
 .table .box[data-order="2"] {
   position: absolute;
+  background-size: cover;
   left: calc(2*100px);
   top: calc(0*100px);
 }
 
 .table .box[data-order="3"] {
   position: absolute;
+  background-size: cover;
   left: calc(0*100px);
   top: calc(1*100px);
 }
 
 .table .box[data-order="4"] {
   position: absolute;
+  background-size: cover;
   left: calc(1*100px);
   top: calc(1*100px);
 }
 
 .table .box[data-order="5"] {
   position: absolute;
+  background-size: cover;
   left: calc(2*100px);
   top: calc(1*100px);
 }
 
 .table .box[data-order="6"] {
   position: absolute;
+  background-size: cover;
   left: calc(0*100px);
   top: calc(2*100px);
 }
 
 .table .box[data-order="7"] {
   position: absolute;
+  background-size: cover;
   left: calc(1*100px);
   top: calc(2*100px);
 }
 
 .table .box[data-order="8"] {
   position: absolute;
+  background-size: cover;
   left: calc(2*100px);
   top: calc(2*100px);
+}
+
+.btn_bar {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.btn_bar .start, .btn_bar .goback {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 /*# sourceMappingURL=style.css.map */
