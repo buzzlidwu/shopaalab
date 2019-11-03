@@ -1,72 +1,105 @@
-const range = (key,index)=>{
+const range = (key,index,color)=>{
   let arr = Array.from({length:index},(v,k)=>{
     let obj = {
       todo:[],
-      day: k + key
+      day: k + key,
+      color: color
     }
     return obj
   })
   return arr
 }
 const now_date = new Date()
+let now_year = now_date.getFullYear()
+let now_month = now_date.getMonth()
 let todolist = {}
 window.onload = ()=>{
+  checkStatus()
+  $('#year_status').text(`${now_year}年`)
+  $('#month_status').text(`${now_month + 1}月`)
+}
+
+$('#change_mm_right').click(()=>{
+  console.log(now_month);
+  
+  if(now_month == 11){
+    now_month = 0
+    now_year++
+  }else{
+    now_month++
+  }
+  changeView()
+  console.log(todolist);
+})
+$('#change_mm_left').click(()=>{
+  if(now_month == 0){
+    now_month = 11
+    now_year--
+  }else{
+    now_month--
+  }
+  changeView()
+  console.log(todolist);
+  
+})
+function changeView(){
+  $('#year_status').text(`${now_year}年`)
+  $('#month_status').text(`${now_month + 1}月`)
+  changeData(now_year,now_month)
+}
+function changeData(yy,mm){
+  if(!todolist[yy] || !todolist[yy][mm]){
+    MakeData(yy,mm)
+  }
+  createHTML(todolist[yy][mm])
+}
+function MakeData(yy,mm){
+  if(!todolist[yy]){
+    todolist[yy] = [...Array(12)]
+  }
+  todolist[yy][mm] = createMMDD(yy,mm)
+  createHTML(todolist[yy][mm])
+  saveLocal(JSON.stringify(todolist))
+}
+//start check data
+function checkStatus(){
   localGET()
-  let now_year = now_date.getFullYear()
-  todolist[now_year] = [...Array(12)]
-  console.log(todolist)
-  console.log(createMMDD(2019,11))
+  changeData(now_year,now_month)
 }
 function createMMDD(yy,mm){
-  let frist_day = new Date(yy,mm-1,1).getDay()
-  let last_day = new Date(yy,mm-1,0).getDate()
-  let day_len = new Date(yy,mm ,0).getDate()
-  return [...range(last_day - frist_day + 1, frist_day ),...range(1,day_len),...range(1,43  - (last_day + frist_day))]
+  let first_day = new Date(yy,mm,1).getDay()
+  let last_day = new Date(yy,mm,0).getDate()
+  let day_len = new Date(yy,mm+1,0).getDate()
+  
+  return [...range(last_day - first_day + 1, first_day,'#333333' ),...range(1,day_len,'red'),...range(1,42  - (day_len + first_day),'#333333')]
 }
 function localGET(){
   if( localStorage.getItem('_my_todolist') ) {
-    todolist = localStorage.getItem('_my_todolist') 
-  }else{
-    todolist = new Object()
+    let data = localStorage.getItem('_my_todolist') 
+    todolist = JSON.parse(data)
   }
 }
-function saveLocal(item){
-  if(localStorage.getItem('_my_todolist')){
+function saveLocal(obj){
+  localStorage.setItem(`_my_todolist`,obj)
+}
 
+function createHTML(arr){ 
+  todolist[2019][10][0].todo = [1,2,3]
+  let htmlcode = ''
+  for(let i in arr){
+    if(i % 7 == 0){
+      htmlcode += `<tr>`
+    }
+    htmlcode+= `<td class='table_days'data-order=${i}>
+    <span class='day_font' style='color:${arr[i].color}'>${arr[i].day}</span>` 
+
+    for(let j of arr[i].todo){
+      htmlcode+= `<li class='todo_item'>${j}</li>`
+    }
+    htmlcode+= `</td>`
   }
-  localStorage.setItem('_my_todolist',item)
+  $('#table_body').html(htmlcode)
+  $('#table_body td').click(function(){
+    $this = $(this)
+  })
 }
-// function nowMonth(first_dayinMonth,perMonth,last_day){ 
-//   console.log(first_dayinMonth,perMonth,last_day);
-  
-//   let nowMonth = [...Array(35).keys()]
-//   let sec = 1
-//   let trd = 1
-//   let htmlcode = ''
-//   for(let i = 0; i < 35 ; i++){
-    
-//     if(first_dayinMonth > 0){
-      
-//       nowMonth[i] = perMonth - first_dayinMonth + 1
-//       first_dayinMonth--
-//       continue
-//     }
-//     if(sec <= last_day){
-//       nowMonth[i] = sec
-//       sec++
-//       continue
-//     }
-//     nowMonth[i] = trd
-//     trd++
-//   }
-  
-//   for(let i in nowMonth){
-//     if(i % 7 == 0){
-//       htmlcode += `<tr>`
-//     }
-//     htmlcode+= `<td>${nowMonth[i]}</td>`
-//   }
-//   // console.log(htmlcode);
-  
-//   $('#table_body').html(htmlcode)
-// }

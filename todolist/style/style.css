@@ -1,5 +1,6 @@
 * {
-  border: 1px solid #000;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 html, body {
@@ -30,19 +31,63 @@ html, body {
       -ms-flex-pack: center;
           justify-content: center;
   text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .todolist_table {
-  border: 1px solid #000;
   width: 100%;
   height: 90vh;
 }
 
 .todolist_table thead > tr > th {
   height: 10vh;
+  border: 1px solid #000;
 }
 
 .todolist_table tbody > tr > th {
   height: clac(11.42857vh);
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  border: 1px solid #000;
+}
+
+.year_bar {
+  height: 5vh;
+  font-size: 3vh;
+}
+
+.month_bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 5vh;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.month_bar .change_mm_left, .month_bar .change_mm_right, .month_bar #month_status {
+  font-size: 3vh;
+  padding: .3vh 5vh;
+}
+
+.table_days {
+  height: 10vh;
+  position: relative;
+  text-align: left;
+  border: 1px solid #000;
+}
+
+.day_font {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: red;
 }
 /*# sourceMappingURL=style.css.map */
