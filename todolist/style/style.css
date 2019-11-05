@@ -37,24 +37,6 @@ html, body {
           flex-direction: column;
 }
 
-.todolist_table {
-  width: 100%;
-  height: 90vh;
-}
-
-.todolist_table thead > tr > th {
-  height: 10vh;
-  border: 1px solid #000;
-}
-
-.todolist_table tbody > tr > th {
-  height: clac(11.42857vh);
-  padding: 0;
-  margin: 0;
-  text-align: left;
-  border: 1px solid #000;
-}
-
 .year_bar {
   height: 5vh;
   font-size: 3vh;
@@ -84,10 +66,125 @@ html, body {
   border: 1px solid #000;
 }
 
-.day_font {
+.add_form {
   position: absolute;
-  left: 0;
-  top: 0;
+  width: 100%;
+  z-index: 100;
+  height: 100%;
+  background-color: rgba(238, 238, 238, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.add_form .add_form_table {
+  width: 50vh;
+  height: 50vh;
+}
+
+#show_form {
+  display: none;
+}
+
+#change {
+  position: absolute;
+  right: 10vw;
+}
+
+.card_size {
+  width: 50vw;
+  text-align: left;
+}
+
+.date_bar {
+  padding: 1vh 1vw;
+}
+
+.textarea_input {
+  margin-top: 1vh;
+}
+
+.btn_bar {
+  margin-top: 1vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.btn_bar #close_todo, .btn_bar #add_todo {
+  margin: 1vh 2vw;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.todolist_box {
+  height: 90vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.todolist_box .top_bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.todolist_box .top_bar .top_context {
+  border: 1px solid #000;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: calc(90vh / 7);
+}
+
+.todolist_box .context {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.todolist_box .context .todo_context {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid #000;
+  width: calc(100vw /7);
+  height: calc(90vh / 7);
+  text-align: left;
+}
+
+.day_font {
+  padding-left: .5vw;
+  text-align: left;
   color: red;
+}
+
+.todo_item {
+  padding-left: 1vw;
 }
 /*# sourceMappingURL=style.css.map */
