@@ -3,11 +3,12 @@
   justify-content: center;
   text-align: center;
 }
-*{
+* {
   // border: 1px solid #000;
   box-sizing: border-box;
 }
-html,body{
+html,
+body {
   @include flexCenter();
   width: 100%;
   height: 100%;
@@ -37,7 +38,7 @@ html,body{
 //     border: 1px solid #000;
 //   }
 // }
-.year_bar{
+.year_bar {
   height: 5vh;
   font-size: 3vh;
 }
@@ -45,12 +46,14 @@ html,body{
   display: flex;
   height: 5vh;
   @include flexCenter();
-  .change_mm_left,.change_mm_right,#month_status{
+  .change_mm_left,
+  .change_mm_right,
+  #month_status {
     font-size: 3vh;
-    padding: .3vh 5vh;
+    padding: 0.3vh 5vh;
   }
 }
-.table_days{
+.table_days {
   // height: clac((100vh - 20vh)/7);
   height: 10vh;
   position: relative;
@@ -62,13 +65,10 @@ html,body{
   width: 100%;
   z-index: 100;
   height: 100%;
-  background-color:rgba($color: #eeeeee, $alpha: .5);
-  // opacity: 0.5;
+  background-color: rgba($color: #eeeeee, $alpha: 0.5);
   @include flexCenter();
   align-items: center;
-  .add_form_table{
-    // z-index: 101;
-    // background-color: red;
+  .add_form_table {
     width: 50vh;
     height: 50vh;
   }
@@ -76,69 +76,64 @@ html,body{
 #show_form {
   display: none;
 }
-#change{
+#change {
   position: absolute;
   right: 10vw;
 }
-.card_size{
-  width: 50vw;
-  // padding: 1vh 2vw;
+.card_size {
+  width: 60vw;
   text-align: left;
 }
-.date_bar{
+.date_bar {
   padding: 1vh 1vw;
 }
-.textarea_input{
+.textarea_input {
   margin-top: 1vh;
 }
-// .send_btn{
-//   position: relative;
-//   // margin: 0;
-//   width: 25vw;
-//   left: calc(12.5vw - 20px);
-// }
-.btn_bar{
+.btn_bar {
   margin-top: 1vh;
   display: flex;
-  #close_todo,#add_todo{
+  #close_todo,
+  #add_todo {
     margin: 1vh 2vw;
     flex: 1;
   }
 }
-.todolist_box{
+.todolist_box {
   height: 90vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
-  .top_bar{
+  .top_bar {
     display: flex;
-    .top_context{
+    .top_context {
       border: 1px solid #000;
       flex: 1;
       box-sizing: border-box;
       height: calc(90vh / 7);
     }
   }
-  .context{
+  .context {
     display: flex;
     flex-wrap: wrap;
-    .todo_context{
+    .todo_context {
       box-sizing: border-box;
       position: relative;
       flex-direction: column;
       display: flex;
       border: 1px solid #000;
-      width: calc(100vw /7);
+      width: calc(100vw / 7);
       height: calc(90vh / 7);
       text-align: left;
+      overflow: hidden;
     }
   }
 }
 .day_font {
-  padding-left: .5vw;
+  padding-left: 0.5vw;
   text-align: left;
   color: red;
 }
-.todo_item{
+.todo_item {
   padding-left: 1vw;
 }

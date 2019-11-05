@@ -3,7 +3,8 @@
           box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -54,9 +55,11 @@ html, body {
   text-align: center;
 }
 
-.month_bar .change_mm_left, .month_bar .change_mm_right, .month_bar #month_status {
+.month_bar .change_mm_left,
+.month_bar .change_mm_right,
+.month_bar #month_status {
   font-size: 3vh;
-  padding: .3vh 5vh;
+  padding: 0.3vh 5vh;
 }
 
 .table_days {
@@ -99,7 +102,7 @@ html, body {
 }
 
 .card_size {
-  width: 50vw;
+  width: 60vw;
   text-align: left;
 }
 
@@ -118,7 +121,8 @@ html, body {
   display: flex;
 }
 
-.btn_bar #close_todo, .btn_bar #add_todo {
+.btn_bar #close_todo,
+.btn_bar #add_todo {
   margin: 1vh 2vw;
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -173,13 +177,14 @@ html, body {
   display: -ms-flexbox;
   display: flex;
   border: 1px solid #000;
-  width: calc(100vw /7);
+  width: calc(100vw / 7);
   height: calc(90vh / 7);
   text-align: left;
+  overflow: hidden;
 }
 
 .day_font {
-  padding-left: .5vw;
+  padding-left: 0.5vw;
   text-align: left;
   color: red;
 }
