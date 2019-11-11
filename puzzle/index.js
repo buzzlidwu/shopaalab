@@ -22,10 +22,8 @@ $(document).ready(() => {
 $('#start_btn').click(function(){
   if(start_status) return
   let user_input = $('#step_size').val()
-  console.log(parseFloat(user_input));
   
   step = parseFloat(user_input).toString() == 'NaN' ? 20 : parseFloat(user_input)
-  console.log(step);
   
   createTopic(step)
   $(this).attr('disabled',true)

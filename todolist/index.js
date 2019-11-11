@@ -121,12 +121,11 @@ function createHTML(arr) {
   });
 }
 
-function showTable(id) {
+async function showTable(id) {
   add_tag = [now_month, id];
-  let data = todolist[now_year][now_month][id];
+  let data = await todolist[now_year][now_month][id];
   let month = now_month;
   if (data.side == "now") {
-    console.log("now");
     month++;
   } else if (data.side == "next") {
     month += 2;
