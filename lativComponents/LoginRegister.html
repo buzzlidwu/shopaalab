@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>LoginRegister</title>
+  </head>
+  <body>
+    <div class="login-register-card">
+      <ul class="top_select_bar" id='select_switch_bar'>
+        <li id="user_login" data-tab='user_login'>會員登入</li>
+        <li id="user_register" data-tab='user_register' class="on">手機號碼註冊</li>
+      </ul>
+      <div class="bottom_card">
+        <div class="login-card card-views" id='login_card'>
+          <div class="left_card">
+            
+          </div>
+          <div class="right_card"></div>
+        </div>
+        <div class="register-card card-views" id='register_card' style="display:none">
+          <div class="left_card"></div>
+          <div class="right_card"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  const registerCard = document.getElementById('register_card')
+  const loginCard = document.getElementById('login_card')
+  const bar = document.querySelectorAll("#select_switch_bar li")
+  for(li of bar){
+    li.addEventListener('click',event=>{
+      let tab = event.toElement
+      displayCard(tab)
+    })
+  }
+  
+  function displayCard(tab){
+    tab.classList.add('on')
+    if(tab.getAttribute('data-tab') == 'user_login'){
+      document.getElementById('user_register').classList.remove('on')
+      registerCard.style.display = "flex"
+      loginCard.style.display = "none"
+    }
+    else{
+      document.getElementById('user_login').classList.remove('on')
+      registerCard.style.display = "none"
+      loginCard.style.display = "flex"
+    }
+  }
+  
+</script>
+<style>
+  .login-register-card {
+    position: relative;
+    width: 900px;
+    margin: 60px auto;
+    font-family: "Microsoft JhengHei", "微軟正黑體";
+  }
+  .top_select_bar {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    padding: 0;
+    margin-bottom: 0;
+  }
+  .top_select_bar li {
+    display: inline-block;
+    width: 200px;
+    border: 1px solid #eee;
+    border-top: 3px solid #eee;
+    margin: 0 -4px -1px 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 40px;
+    color: #d2d2d2;
+    background-color: #fafafa;
+  }
+  .top_select_bar li.on {
+    border-top: 3px solid #c0a886;
+    border-bottom: 1px solid #fff;
+    color: #706e6c;
+    background-color: #fff;
+  }
+  .login-register-tab li.on {
+    border-top: 3px solid #c0a886;
+    border-bottom: 1px solid #fff;
+    color: #706e6c;
+    background-color: #fff;
+  }
+  li {
+    list-style: none;
+  }
+
+  /* bottom card */
+  .bottom_card {
+    display: flex;
+    width: 900px;
+    border: 1px solid #ededed;
+    height: 430px;
+    padding: 60px 0;
+  }
+  .card-views {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .left_card{
+    flex: 6;
+    border-right: 1px solid #ededed;
+  }
+  .right_card{
+    flex: 4;
+  }
+</style>
