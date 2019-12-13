@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["permission-role"],{d78e:function(n,e,l){"use strict";l.r(e);var o,s,p=l("2877"),u={},i=Object(p["a"])(u,o,s,!1,null,null,null);e["default"]=i.exports}}]);
+//# sourceMappingURL=permission-role.9d487b89.js.map
